@@ -23,6 +23,7 @@ See [more examples](https://github.com/mihai-dinculescu/tapo/tree/main/tapo-py/e
 
 from typing import Optional
 from .color_light_handler import ColorLightHandler
+from .color_light_strip_handler import ColorLightStripHandler
 from .generic_device_handler import GenericDeviceHandler
 from .light_handler import LightHandler
 from .plug_energy_monitoring_handler import PlugEnergyMonitoringHandler
