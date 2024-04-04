@@ -6,6 +6,7 @@ use crate::responses::{decode_value, DecodableResultExt, DefaultStateType, TapoR
 
 /// Device info of Tapo L920 and L930. Superset of [`crate::responses::DeviceInfoGenericResult`].
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "python", pyo3::prelude::pyclass(get_all))]
 #[allow(missing_docs)]
 pub struct DeviceInfoColorLightStripResult {
     //
@@ -47,6 +48,18 @@ pub struct DeviceInfoColorLightStripResult {
     pub default_states: DefaultColorLightStripState,
 }
 
+#[cfg(feature = "python")]
+#[pyo3::pymethods]
+impl DeviceInfoColorLightStripResult {
+    /// Gets all the properties of this result as a dictionary.
+    pub fn to_dict(&self, py: pyo3::Python) -> pyo3::PyResult<pyo3::Py<pyo3::types::PyDict>> {
+        let value = serde_json::to_value(self)
+            .map_err(|e| pyo3::exceptions::PyException::new_err(e.to_string()))?;
+
+        crate::python::serde_object_to_py_dict(py, &value)
+    }
+}
+
 impl TapoResponseExt for DeviceInfoColorLightStripResult {}
 
 impl DecodableResultExt for DeviceInfoColorLightStripResult {
@@ -60,6 +73,7 @@ impl DecodableResultExt for DeviceInfoColorLightStripResult {
 
 /// Color Light Strip Default State.
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "python", pyo3::prelude::pyclass(get_all))]
 #[allow(missing_docs)]
 pub struct DefaultColorLightStripState {
     pub r#type: DefaultStateType,
@@ -68,6 +82,7 @@ pub struct DefaultColorLightStripState {
 
 /// Color Light Strip State.
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[cfg_attr(feature = "python", pyo3::prelude::pyclass(get_all))]
 #[allow(missing_docs)]
 pub struct ColorLightStripState {
     pub brightness: Option<u8>,
