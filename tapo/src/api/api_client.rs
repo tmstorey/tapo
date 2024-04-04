@@ -245,7 +245,7 @@ impl ApiClient {
         Ok(ColorLightHandler::new(self))
     }
 
-    /// Specializes the given [`ApiClient`] into an authenticated [`ColorLightHandler`].
+    /// Specializes the given [`ApiClient`] into an authenticated [`ColorLightStripHandler`].
     ///
     /// # Arguments
     ///
@@ -264,10 +264,10 @@ impl ApiClient {
     /// # Ok(())
     /// # }
     /// ```
-    pub async fn l900(mut self, ip_address: impl Into<String>) -> Result<ColorLightHandler, Error> {
+    pub async fn l900(mut self, ip_address: impl Into<String>) -> Result<ColorLightStripHandler, Error> {
         self.login(ip_address).await?;
 
-        Ok(ColorLightHandler::new(self))
+        Ok(ColorLightStripHandler::new(self))
     }
 
     /// Specializes the given [`ApiClient`] into an authenticated [`ColorLightStripHandler`].
