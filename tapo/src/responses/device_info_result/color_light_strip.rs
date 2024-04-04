@@ -4,7 +4,7 @@ use crate::error::Error;
 use crate::requests::LightingEffect;
 use crate::responses::{decode_value, DecodableResultExt, DefaultStateType, TapoResponseExt};
 
-/// Device info of Tapo L920 and L930. Superset of [`crate::responses::DeviceInfoGenericResult`].
+/// Device info of Tapo L900, L920 and L930. Superset of [`crate::responses::DeviceInfoGenericResult`].
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[allow(missing_docs)]
 pub struct DeviceInfoColorLightStripResult {
